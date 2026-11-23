@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember Court — a duel of suits and cunning</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="phase-title">
+<div id="app">
+
+  <!-- ============ TITLE SCREEN ============ -->
+  <section id="screen-title" class="screen">
+    <div class="title-flames" aria-hidden="true">
+      <span class="flame f1"></span><span class="flame f2"></span><span class="flame f3"></span>
+      <span class="flame f4"></span><span class="flame f5"></span>
+    </div>
+    <div class="title-inner">
+      <p class="title-kicker">THE COURT IS IN SESSION</p>
+      <h1 class="title-logo"><span class="logo-ember">EMBER</span> <span class="logo-court">COURT</span></h1>
+      <p class="title-tag">a duel of suits and cunning</p>
+
+      <div class="title-fan" id="title-fan" aria-hidden="true"></div>
+
+      <p class="title-rules">You and Lady Cinder start at <b>30 life</b>. Spend <b>3 energy</b> a turn.
+        Play two cards of the same suit in one turn for a <b>COMBO &times;2</b>.
+        Court cards hit twice as hard. Reduce Cinder to 0 to claim the court.</p>
+
+      <div class="title-actions">
+        <button id="btn-start" class="btn btn-gold">Take Your Seat</button>
+        <button id="btn-how" class="btn btn-ghost">How to Play</button>
+      </div>
+      <p class="title-keys">Keys: <b>1–5</b> select &middot; <b>Enter</b> play &middot; <b>Esc</b> cancel &middot;
+        <b>E</b> end turn &middot; <b>R</b> restart</p>
+      <div id="howto" class="howto hidden">
+        <h3>How to Play</h3>
+        <ul>
+          <li><b>1–5</b> — select a card in your hand. <b>Enter</b> plays it, <b>Esc</b> cancels.</li>
+          <li>Each card costs energy. You get <b>3 energy</b> every turn.</li>
+          <li>Playing two cards of the <b>same suit</b> in one turn triggers <b>COMBO &times;2</b> damage on the second card.</li>
+          <li><b>Court cards</b> (Queen / King) deal <b>double</b> damage.</li>
+          <li>Press <b>E</b> to end your turn — Cinder answers with her own hand.</li>
+          <li>First to 0 life loses. Cinder at 0 means the court is yours.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TABLE SCREEN ============ -->
+  <section id="screen-table" class="screen hidden">
+    <header class="table-top">
+      <div class="fighter fighter-cinder">
+        <div class="portrait portrait-cinder" aria-label="Lady Cinder">
+          <span class="crown"><i></i><i></i><i></i></span>
+          <span class="p-face"></span>
+          <span class="p-glow"></span>
+        </div>
+        <div class="fighter-info">
+          <p class="fighter-name">Lady Cinder <span class="fighter-title">Queen of Embers</span></p>
+          <div class="life-bar"><div id="cinder-life-fill" class="life-fill cinder"></div><span id="cinder-life-text" class="life-text">30 / 30</span></div>
+          <p class="fighter-hand"><span id="cinder-hand-count">5</span> cards in hand</p>
+        </div>
+      </div>
+
+      <div class="duel-crest" aria-hidden="true">
+        <span class="crest-ring">VS</span>
+        <span class="crest-flame"></span>
+        <p class="turn-banner" id="turn-banner">YOUR TURN</p>
+      </div>
+
+      <div class="fighter fighter-player">
+        <div class="fighter-info right">
+          <p class="fighter-name">Challenger <span class="fighter-title">Knight of the Court</span></p>
+          <div class="life-bar"><div id="player-life-fill" class="life-fill player"></div><span id="player-life-text" class="life-text">30 / 30</span></div>
+          <p class="fighter-hand"><span id="player-energy">3</span> energy &middot; Turn <span id="turn-count">1</span></p>
+        </div>
+        <div class="portrait portrait-player" aria-label="Challenger">
+          <span class="helm"><i class="plume"></i><i class="visor"></i></span>
+          <span class="p-face"></span>
+          <span class="sword"><i></i></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="played-zone">
+      <div class="played-row played-row-cinder" id="played-cinder"></div>
+      <div class="played-mid">
+        <span class="played-label">Cinder's play</span>
+        <span class="played-vs">⚔</span>
+        <span class="played-label">Your play</span>
+      </div>
+      <div class="played-row played-row-player" id="played-player"></div>
+    </div>
+
+    <div class="table-bottom">
+      <div class="log-panel">
+        <h3>Duel Log</h3>
+        <ul id="duel-log"></ul>
+      </div>
+      <div class="hand-panel">
+        <div class="hand" id="player-hand"></div>
+        <div class="hand-actions">
+          <button id="btn-end-turn" class="btn btn-gold">End Turn <span class="key-hint">E</span></button>
+          <button id="btn-restart" class="btn btn-ghost">Restart <span class="key-hint">R</span></button>
+          <p class="hand-hint">Click a card or press <b>1–5</b>, then <b>Enter</b> to play it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ END SCREEN (WIN / LOSS) ============ -->
+  <section id="screen-end" class="screen hidden">
+    <div class="end-confetti" aria-hidden="true"></div>
+    <div class="end-inner">
+      <div class="end-emblem" id="end-emblem"><span id="end-emblem-glyph">✦</span></div>
+      <p class="end-kicker" id="end-kicker">VICTORY</p>
+      <h2 class="end-title" id="end-title">The Court Is Yours</h2>
+      <p class="end-earned" id="end-earned">Title earned: Court Champion</p>
+      <p class="end-story" id="end-story"></p>
+      <div class="end-keycards">
+        <p class="end-keycards-label">Decisive cards</p>
+        <div class="end-keycards-row" id="end-keycards"></div>
+      </div>
+      <div class="end-stats" id="end-stats"></div>
+      <div class="end-actions">
+        <button id="btn-again" class="btn btn-gold">Duel Again <span class="key-hint">R</span></button>
+        <button id="btn-title" class="btn btn-ghost">Title Screen</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script src="game.js"></script>
+<script src="render.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
