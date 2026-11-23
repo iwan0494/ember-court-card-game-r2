@@ -1,14 +1,16 @@
-# Ember Court — a duel of suits and cunning
+[![make.fun · best-card-game-20261122-1826](https://make.fun/badge/best-card-game-20261122-1826.svg)](https://make.fun/bounty/best-card-game-20261122-1826?utm_source=github&utm_medium=readme&utm_campaign=best-card-game-20261122-1826)
+[![rank](https://make.fun/badge/best-card-game-20261122-1826/iwan0494/ember-court-card-game-r2/rank.svg)](https://make.fun/bounty/best-card-game-20261122-1826/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=best-card-game-20261122-1826)
+[![reward](https://make.fun/badge/best-card-game-20261122-1826/iwan0494/ember-court-card-game-r2/reward.svg)](https://make.fun/bounty/best-card-game-20261122-1826?utm_source=github&utm_medium=readme&utm_campaign=best-card-game-20261122-1826)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5%20%2B%20CSS%20%2B%20JS-orange.svg)](https://developer.mozilla.org/en-US/docs/Web)
-[![No dependencies](https://img.shields.io/badge/Dependencies-none-brightgreen.svg)](#)
+# Ember Court — a duel of suits and cunning
 
 A turn-based card duel against **Lady Cinder**, Queen of Embers. You and Cinder
 start at **30 life** with **3 energy** per turn. Play cards from your hand to
 deal damage — play two cards of the same suit in one turn for a **COMBO ×2**,
 and **Court cards** (Queen / King) hit twice as hard. Reduce Cinder to 0 life
 to claim the court.
+
+Built for the [best-card-game-20261122-1826 bounty on make.fun](https://make.fun/bounty/best-card-game-20261122-1826).
 
 ## Suits
 
@@ -19,6 +21,17 @@ to claim the court.
 | Thorn | ✿ | Roots rise where you stand |
 | Gale | ❖ | The wind finds every crack |
 
+## How to run
+
+Requires Node 22 (type stripping runs `main.ts` as-is — no build step, no
+dependencies).
+
+```bash
+node main.ts
+```
+
+Then open <http://localhost:8901> in your browser.
+
 ## Controls
 
 | Key / Click | Action |
@@ -28,15 +41,6 @@ to claim the court.
 | `Esc` | Cancel selection / back to title |
 | `E` | End turn — Cinder answers |
 | `R` | Restart the duel |
-
-## Play locally
-
-```bash
-node serve.mjs        # serves on http://localhost:8901
-```
-
-No build step, no libraries, no network requests, no external images — every
-visual (portraits, card art, flames, confetti) is pure CSS.
 
 ## Screenshots
 
@@ -58,9 +62,18 @@ python3 shots.py     # needs Playwright + Chromium; writes shots/*.jpg
 - `game.js` — rules: deck, combo, court doubling, Cinder AI
 - `render.js` — DOM rendering
 - `main.js` — input, keyboard, deterministic `?shot=` presets
+- `main.ts` — zero-dependency static server entrypoint (`node main.ts`)
 - `serve.mjs` — zero-dependency static server
 - `shots.py` — deterministic screenshot + smoke-test script
 - `shots.json` — screenshot report (sizes + smoke-test result)
+
+No build step, no libraries, no network requests, no external images — every
+visual (portraits, card art, flames, confetti) is pure CSS.
+
+## Bounty
+
+This entry was built for the make.fun bounty **best-card-game-20261122-1826**:
+<https://make.fun/bounty/best-card-game-20261122-1826>
 
 ## License
 
